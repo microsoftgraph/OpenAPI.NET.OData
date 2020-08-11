@@ -92,13 +92,13 @@ namespace Microsoft.OpenApi.OData.PathItem
                 {
                     AddOperation(item, OperationType.Put);
                 }
-            }
 
-            // delete the link
-            DeleteRestrictionsType delete = restriction?.DeleteRestrictions;
-            if (delete == null || delete.IsDeletable)
-            {
-                AddOperation(item, OperationType.Delete);
+                // delete the link
+                DeleteRestrictionsType delete = restriction?.DeleteRestrictions;
+                if (delete == null || delete.IsDeletable)
+                {
+                    AddOperation(item, OperationType.Delete);
+                }
             }
         }
 
