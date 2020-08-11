@@ -1283,7 +1283,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "String"
+                "type": "object"
               }
             }
           },
@@ -1295,44 +1295,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "String"
+                  "type": "object"
                 }
               }
             }
-          },
-          "default": {
-            "$ref": "#/components/responses/error"
-          }
-        },
-        "x-ms-docs-operation-type": "operation"
-      },
-      "delete": {
-        "tags": [
-          "Me.Person"
-        ],
-        "summary": "Delete ref of navigation property Friends for Me",
-        "operationId": "Me.DeleteRefFriends",
-        "parameters": [
-          {
-            "name": "If-Match",
-            "in": "header",
-            "description": "ETag",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "@id",
-            "in": "query",
-            "description": "Delete Uri",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Success"
           },
           "default": {
             "$ref": "#/components/responses/error"
@@ -1895,7 +1861,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "String"
+                "type": "object"
               }
             }
           },
@@ -1907,44 +1873,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "String"
+                  "type": "object"
                 }
               }
             }
-          },
-          "default": {
-            "$ref": "#/components/responses/error"
-          }
-        },
-        "x-ms-docs-operation-type": "operation"
-      },
-      "delete": {
-        "tags": [
-          "Me.Trip"
-        ],
-        "summary": "Delete ref of navigation property Trips for Me",
-        "operationId": "Me.DeleteRefTrips",
-        "parameters": [
-          {
-            "name": "If-Match",
-            "in": "header",
-            "description": "ETag",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "@id",
-            "in": "query",
-            "description": "Delete Uri",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Success"
           },
           "default": {
             "$ref": "#/components/responses/error"
@@ -2853,7 +2785,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "String"
+                "type": "object"
               }
             }
           },
@@ -2865,54 +2797,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "String"
+                  "type": "object"
                 }
               }
             }
-          },
-          "default": {
-            "$ref": "#/components/responses/error"
-          }
-        },
-        "x-ms-docs-operation-type": "operation"
-      },
-      "delete": {
-        "tags": [
-          "NewComePeople.Person"
-        ],
-        "summary": "Delete ref of navigation property Friends for NewComePeople",
-        "operationId": "NewComePeople.DeleteRefFriends",
-        "parameters": [
-          {
-            "name": "UserName",
-            "in": "path",
-            "description": "key: UserName of Person",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "x-ms-docs-key-type": "Person"
-          },
-          {
-            "name": "If-Match",
-            "in": "header",
-            "description": "ETag",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "@id",
-            "in": "query",
-            "description": "Delete Uri",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Success"
           },
           "default": {
             "$ref": "#/components/responses/error"
@@ -3583,7 +3471,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "String"
+                "type": "object"
               }
             }
           },
@@ -3595,54 +3483,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "String"
+                  "type": "object"
                 }
               }
             }
-          },
-          "default": {
-            "$ref": "#/components/responses/error"
-          }
-        },
-        "x-ms-docs-operation-type": "operation"
-      },
-      "delete": {
-        "tags": [
-          "NewComePeople.Trip"
-        ],
-        "summary": "Delete ref of navigation property Trips for NewComePeople",
-        "operationId": "NewComePeople.DeleteRefTrips",
-        "parameters": [
-          {
-            "name": "UserName",
-            "in": "path",
-            "description": "key: UserName of Person",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "x-ms-docs-key-type": "Person"
-          },
-          {
-            "name": "If-Match",
-            "in": "header",
-            "description": "ETag",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "@id",
-            "in": "query",
-            "description": "Delete Uri",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Success"
           },
           "default": {
             "$ref": "#/components/responses/error"
@@ -4551,7 +4395,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "String"
+                "type": "object"
               }
             }
           },
@@ -4563,54 +4407,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "String"
+                  "type": "object"
                 }
               }
             }
-          },
-          "default": {
-            "$ref": "#/components/responses/error"
-          }
-        },
-        "x-ms-docs-operation-type": "operation"
-      },
-      "delete": {
-        "tags": [
-          "People.Person"
-        ],
-        "summary": "Delete ref of navigation property Friends for People",
-        "operationId": "People.DeleteRefFriends",
-        "parameters": [
-          {
-            "name": "UserName",
-            "in": "path",
-            "description": "key: UserName of Person",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "x-ms-docs-key-type": "Person"
-          },
-          {
-            "name": "If-Match",
-            "in": "header",
-            "description": "ETag",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "@id",
-            "in": "query",
-            "description": "Delete Uri",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Success"
           },
           "default": {
             "$ref": "#/components/responses/error"
@@ -5281,7 +5081,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "String"
+                "type": "object"
               }
             }
           },
@@ -5293,54 +5093,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "String"
+                  "type": "object"
                 }
               }
             }
-          },
-          "default": {
-            "$ref": "#/components/responses/error"
-          }
-        },
-        "x-ms-docs-operation-type": "operation"
-      },
-      "delete": {
-        "tags": [
-          "People.Trip"
-        ],
-        "summary": "Delete ref of navigation property Trips for People",
-        "operationId": "People.DeleteRefTrips",
-        "parameters": [
-          {
-            "name": "UserName",
-            "in": "path",
-            "description": "key: UserName of Person",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "x-ms-docs-key-type": "Person"
-          },
-          {
-            "name": "If-Match",
-            "in": "header",
-            "description": "ETag",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "@id",
-            "in": "query",
-            "description": "Delete Uri",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Success"
           },
           "default": {
             "$ref": "#/components/responses/error"
