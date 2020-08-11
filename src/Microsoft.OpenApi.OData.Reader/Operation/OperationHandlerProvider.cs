@@ -68,7 +68,7 @@ namespace Microsoft.OpenApi.OData.Operation
                 {OperationType.Delete, new NavigationPropertyDeleteOperationHandler() }
             };
 
-            // navigati0n property ref (Get/Post/Put/Delete)
+            // navigation property ref (Get/Post/Put/Delete)
             _handlers[ODataPathKind.Ref] = new Dictionary<OperationType, IOperationHandler>
             {
                 {OperationType.Get, new RefGetOperationHandler() },
