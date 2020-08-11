@@ -67,8 +67,7 @@ namespace Microsoft.OpenApi.OData.Operation
         {
             OpenApiSchema schema = new OpenApiSchema
             {
-                Type = "object",
-                AdditionalProperties = new OpenApiSchema { Type = "object" }
+                Type = "string"
             };
 
             operation.Responses = new OpenApiResponses
