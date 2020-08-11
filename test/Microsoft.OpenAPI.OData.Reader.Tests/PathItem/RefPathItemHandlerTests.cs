@@ -58,7 +58,7 @@ namespace Microsoft.OpenApi.OData.PathItem.Tests
 
         [Theory]
         [InlineData(true, new OperationType[] { OperationType.Get, OperationType.Post, OperationType.Delete })]
-        [InlineData(false, new OperationType[] { OperationType.Get, OperationType.Patch, OperationType.Delete })]
+        [InlineData(false, new OperationType[] { OperationType.Get, OperationType.Put, OperationType.Delete })]
         public void CreateNavigationPropertyRefPathItemReturnsCorrectPathItem(bool collectionNav, OperationType[] expected)
         {
             // Arrange
