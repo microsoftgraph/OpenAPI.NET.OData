@@ -610,6 +610,8 @@ paths:
           application/json:
             schema:
               type: object
+              additionalProperties:
+                type: object
         required: true
       responses:
         '204':
@@ -871,6 +873,8 @@ paths:
           application/json:
             schema:
               type: object
+              additionalProperties:
+                type: object
         required: true
       responses:
         '201':
@@ -1256,6 +1260,8 @@ paths:
           application/json:
             schema:
               type: object
+              additionalProperties:
+                type: object
         required: true
       responses:
         '201':
@@ -1610,6 +1616,8 @@ paths:
           application/json:
             schema:
               type: object
+              additionalProperties:
+                type: object
         required: true
       responses:
         '204':
@@ -1907,6 +1915,8 @@ paths:
           application/json:
             schema:
               type: object
+              additionalProperties:
+                type: object
         required: true
       responses:
         '201':
@@ -2366,6 +2376,8 @@ paths:
           application/json:
             schema:
               type: object
+              additionalProperties:
+                type: object
         required: true
       responses:
         '201':
@@ -2720,6 +2732,8 @@ paths:
           application/json:
             schema:
               type: object
+              additionalProperties:
+                type: object
         required: true
       responses:
         '204':
@@ -3017,6 +3031,8 @@ paths:
           application/json:
             schema:
               type: object
+              additionalProperties:
+                type: object
         required: true
       responses:
         '201':
@@ -3476,6 +3492,8 @@ paths:
           application/json:
             schema:
               type: object
+              additionalProperties:
+                type: object
         required: true
       responses:
         '201':

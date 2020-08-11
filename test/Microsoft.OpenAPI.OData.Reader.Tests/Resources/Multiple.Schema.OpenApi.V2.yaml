@@ -721,6 +721,8 @@ paths:
           required: true
           schema:
             type: object
+            additionalProperties:
+              type: object
       responses:
         '201':
           description: Created navigation property link.
@@ -1203,6 +1205,8 @@ paths:
           required: true
           schema:
             type: object
+            additionalProperties:
+              type: object
       responses:
         '201':
           description: Created navigation property link.
@@ -1597,6 +1601,8 @@ paths:
           required: true
           schema:
             type: object
+            additionalProperties:
+              type: object
       responses:
         '204':
           description: Success
@@ -2150,6 +2156,8 @@ paths:
           required: true
           schema:
             type: object
+            additionalProperties:
+              type: object
       responses:
         '201':
           description: Created navigation property link.

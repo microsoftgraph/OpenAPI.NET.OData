@@ -40,7 +40,8 @@ namespace Microsoft.OpenApi.OData.Operation
         {
             OpenApiSchema schema = new OpenApiSchema
             {
-                Type = "object"
+                Type = "object",
+                AdditionalProperties = new OpenApiSchema { Type = "object" }
             };
 
             operation.RequestBody = new OpenApiRequestBody

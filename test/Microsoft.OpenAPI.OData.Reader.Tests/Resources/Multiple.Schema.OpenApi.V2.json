@@ -998,7 +998,10 @@
             "description": "New navigation property ref value",
             "required": true,
             "schema": {
-              "type": "object"
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
             }
           }
         ],
@@ -1666,7 +1669,10 @@
             "description": "New navigation property ref value",
             "required": true,
             "schema": {
-              "type": "object"
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
             }
           }
         ],
@@ -2190,7 +2196,10 @@
             "description": "New navigation property ref values",
             "required": true,
             "schema": {
-              "type": "object"
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
             }
           }
         ],
@@ -2949,7 +2958,10 @@
             "description": "New navigation property ref value",
             "required": true,
             "schema": {
-              "type": "object"
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
             }
           }
         ],

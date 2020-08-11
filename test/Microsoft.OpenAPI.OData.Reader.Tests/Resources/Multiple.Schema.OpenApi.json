@@ -1120,7 +1120,10 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object"
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object"
+                }
               }
             }
           },
@@ -1880,7 +1883,10 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object"
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object"
+                }
               }
             }
           },
@@ -2529,7 +2535,10 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object"
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object"
+                }
               }
             }
           },
@@ -3383,7 +3392,10 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object"
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object"
+                }
               }
             }
           },
