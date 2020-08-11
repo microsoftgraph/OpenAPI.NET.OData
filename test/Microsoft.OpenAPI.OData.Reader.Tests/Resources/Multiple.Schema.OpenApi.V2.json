@@ -1009,10 +1009,7 @@
           "201": {
             "description": "Created navigation property link.",
             "schema": {
-              "type": "object",
-              "additionalProperties": {
-                "type": "object"
-              }
+              "type": "object"
             }
           },
           "default": {
@@ -1683,10 +1680,7 @@
           "201": {
             "description": "Created navigation property link.",
             "schema": {
-              "type": "object",
-              "additionalProperties": {
-                "type": "object"
-              }
+              "type": "object"
             }
           },
           "default": {
@@ -2975,10 +2969,7 @@
           "201": {
             "description": "Created navigation property link.",
             "schema": {
-              "type": "object",
-              "additionalProperties": {
-                "type": "object"
-              }
+              "type": "object"
             }
           },
           "default": {

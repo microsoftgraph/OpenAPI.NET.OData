@@ -787,8 +787,6 @@ paths:
           description: Created navigation property link.
           schema:
             type: object
-            additionalProperties:
-              type: object
         default:
           $ref: '#/responses/error'
       x-ms-docs-operation-type: operation
@@ -1146,8 +1144,6 @@ paths:
           description: Created navigation property link.
           schema:
             type: object
-            additionalProperties:
-              type: object
         default:
           $ref: '#/responses/error'
       x-ms-docs-operation-type: operation
@@ -1742,8 +1738,6 @@ paths:
           description: Created navigation property link.
           schema:
             type: object
-            additionalProperties:
-              type: object
         default:
           $ref: '#/responses/error'
       x-ms-docs-operation-type: operation
@@ -2162,8 +2156,6 @@ paths:
           description: Created navigation property link.
           schema:
             type: object
-            additionalProperties:
-              type: object
         default:
           $ref: '#/responses/error'
       x-ms-docs-operation-type: operation
@@ -2758,8 +2750,6 @@ paths:
           description: Created navigation property link.
           schema:
             type: object
-            additionalProperties:
-              type: object
         default:
           $ref: '#/responses/error'
       x-ms-docs-operation-type: operation
@@ -3178,8 +3168,6 @@ paths:
           description: Created navigation property link.
           schema:
             type: object
-            additionalProperties:
-              type: object
         default:
           $ref: '#/responses/error'
       x-ms-docs-operation-type: operation
