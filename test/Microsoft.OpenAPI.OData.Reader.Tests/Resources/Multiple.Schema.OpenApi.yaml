@@ -809,6 +809,8 @@ paths:
             application/json:
               schema:
                 type: object
+                additionalProperties:
+                  type: object
         default:
           $ref: '#/components/responses/error'
       x-ms-docs-operation-type: operation
@@ -1353,6 +1355,8 @@ paths:
             application/json:
               schema:
                 type: object
+                additionalProperties:
+                  type: object
         default:
           $ref: '#/components/responses/error'
       x-ms-docs-operation-type: operation
@@ -2445,6 +2449,8 @@ paths:
             application/json:
               schema:
                 type: object
+                additionalProperties:
+                  type: object
         default:
           $ref: '#/components/responses/error'
       x-ms-docs-operation-type: operation
