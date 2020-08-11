@@ -774,7 +774,7 @@
         },
         "x-ms-docs-operation-type": "operation"
       },
-      "patch": {
+      "put": {
         "tags": [
           "Me.Person"
         ],
@@ -790,7 +790,7 @@
             "description": "New navigation property ref values",
             "required": true,
             "schema": {
-              "type": "String"
+              "type": "object"
             }
           }
         ],
@@ -2134,7 +2134,7 @@
         },
         "x-ms-docs-operation-type": "operation"
       },
-      "patch": {
+      "put": {
         "tags": [
           "NewComePeople.Person"
         ],
@@ -2158,7 +2158,7 @@
             "description": "New navigation property ref values",
             "required": true,
             "schema": {
-              "type": "String"
+              "type": "object"
             }
           }
         ],
@@ -3640,7 +3640,7 @@
         },
         "x-ms-docs-operation-type": "operation"
       },
-      "patch": {
+      "put": {
         "tags": [
           "People.Person"
         ],
@@ -3664,7 +3664,7 @@
             "description": "New navigation property ref values",
             "required": true,
             "schema": {
-              "type": "String"
+              "type": "object"
             }
           }
         ],

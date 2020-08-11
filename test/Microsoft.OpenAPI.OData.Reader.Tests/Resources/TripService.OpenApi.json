@@ -904,7 +904,7 @@
         },
         "x-ms-docs-operation-type": "operation"
       },
-      "patch": {
+      "put": {
         "tags": [
           "Me.Person"
         ],
@@ -915,7 +915,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "String"
+                "type": "object"
               }
             }
           },
@@ -2410,7 +2410,7 @@
         },
         "x-ms-docs-operation-type": "operation"
       },
-      "patch": {
+      "put": {
         "tags": [
           "NewComePeople.Person"
         ],
@@ -2433,7 +2433,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "String"
+                "type": "object"
               }
             }
           },
@@ -4108,7 +4108,7 @@
         },
         "x-ms-docs-operation-type": "operation"
       },
-      "patch": {
+      "put": {
         "tags": [
           "People.Person"
         ],
@@ -4131,7 +4131,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "String"
+                "type": "object"
               }
             }
           },

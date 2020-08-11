@@ -525,7 +525,7 @@ paths:
         default:
           $ref: '#/responses/error'
       x-ms-docs-operation-type: operation
-    patch:
+    put:
       tags:
         - Me.Person
       summary: Update the ref of navigation property BestFriend in Me
@@ -538,7 +538,7 @@ paths:
           description: New navigation property ref values
           required: true
           schema:
-            type: String
+            type: object
       responses:
         '204':
           description: Success
@@ -1474,7 +1474,7 @@ paths:
         default:
           $ref: '#/responses/error'
       x-ms-docs-operation-type: operation
-    patch:
+    put:
       tags:
         - NewComePeople.Person
       summary: Update the ref of navigation property BestFriend in NewComePeople
@@ -1493,7 +1493,7 @@ paths:
           description: New navigation property ref values
           required: true
           schema:
-            type: String
+            type: object
       responses:
         '204':
           description: Success
@@ -2532,7 +2532,7 @@ paths:
         default:
           $ref: '#/responses/error'
       x-ms-docs-operation-type: operation
-    patch:
+    put:
       tags:
         - People.Person
       summary: Update the ref of navigation property BestFriend in People
@@ -2551,7 +2551,7 @@ paths:
           description: New navigation property ref values
           required: true
           schema:
-            type: String
+            type: object
       responses:
         '204':
           description: Success

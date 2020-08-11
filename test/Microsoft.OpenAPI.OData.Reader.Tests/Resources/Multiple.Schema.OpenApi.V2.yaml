@@ -1632,7 +1632,7 @@ paths:
         default:
           $ref: '#/responses/error'
       x-ms-docs-operation-type: operation
-    patch:
+    put:
       tags:
         - Revisions.Document
       summary: Update the ref of navigation property Document in Revisions
@@ -1654,7 +1654,7 @@ paths:
           description: New navigation property ref values
           required: true
           schema:
-            type: String
+            type: object
       responses:
         '204':
           description: Success

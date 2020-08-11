@@ -2245,7 +2245,7 @@
         },
         "x-ms-docs-operation-type": "operation"
       },
-      "patch": {
+      "put": {
         "tags": [
           "Revisions.Document"
         ],
@@ -2272,7 +2272,7 @@
             "description": "New navigation property ref values",
             "required": true,
             "schema": {
-              "type": "String"
+              "type": "object"
             }
           }
         ],

@@ -1857,7 +1857,7 @@ paths:
         default:
           $ref: '#/components/responses/error'
       x-ms-docs-operation-type: operation
-    patch:
+    put:
       tags:
         - Revisions.Document
       summary: Update the ref of navigation property Document in Revisions
@@ -1878,7 +1878,7 @@ paths:
         content:
           application/json:
             schema:
-              type: String
+              type: object
         required: true
       responses:
         '204':
