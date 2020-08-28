@@ -244,7 +244,6 @@ namespace Microsoft.OpenApi.OData.Edm
             // append a navigation property.
             currentPath.Push(new ODataNavigationPropertySegment(navigationProperty));
             AppendPath(currentPath.Clone());
-            IEdmEntityType navEntityType = navigationProperty.ToEntityType();
 
             if (!navigationProperty.ContainsTarget)
             {
@@ -257,6 +256,8 @@ namespace Microsoft.OpenApi.OData.Edm
             }
             else
             {
+                IEdmEntityType navEntityType = navigationProperty.ToEntityType();
+
                 // append a navigation property key.
                 if (navigationProperty.TargetMultiplicity() == EdmMultiplicity.Many)
                 {
