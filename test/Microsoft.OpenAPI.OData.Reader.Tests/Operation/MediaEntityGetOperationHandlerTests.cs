@@ -84,7 +84,7 @@ namespace Microsoft.OpenApi.OData.Operation.Tests
 
         public static IEdmModel GetEdmModel()
         {
-            string modelText = @"<edmx:Edmx Version=""4.0"" xmlns:edmx=""http://docs.oasis-open.org/odata/ns/edmx"">
+            const string modelText = @"<edmx:Edmx Version=""4.0"" xmlns:edmx=""http://docs.oasis-open.org/odata/ns/edmx"">
   <edmx:DataServices>
     <Schema Namespace=""microsoft.graph"" xmlns=""http://docs.oasis-open.org/odata/ns/edm"">
       <EntityType Name=""Todo"" HasStream=""true"">
