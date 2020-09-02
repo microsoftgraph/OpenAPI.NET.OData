@@ -284,6 +284,10 @@ namespace Microsoft.OpenApi.OData.Edm
                         }
                     }
                 }
+
+                // Get possible navigation property stream paths
+                RetrieveMediaEntityStreamPaths(navEntityType, currentPath);
+
                 if (navigationProperty.TargetMultiplicity() == EdmMultiplicity.Many)
                 {
                     currentPath.Pop();
