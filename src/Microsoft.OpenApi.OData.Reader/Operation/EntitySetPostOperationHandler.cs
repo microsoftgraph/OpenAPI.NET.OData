@@ -62,13 +62,25 @@ namespace Microsoft.OpenApi.OData.Operation
                 };
             }
 
-            // The requestBody field contains a Request Body Object for the request body
-            // that references the schema of the entity set’s entity type in the global schemas.
-            operation.RequestBody = new OpenApiRequestBody
+            IDictionary<string, OpenApiMediaType> content;
+
+            if (EntitySet.EntityType().HasStream)
             {
-                Required = true,
-                Description = "New entity",
-                Content = new Dictionary<string, OpenApiMediaType>
+                // Support creating a media entity
+                content = new Dictionary<string, OpenApiMediaType>
+                {
+                    {
+                        // TODO: Read the AcceptableMediaType annotation from CSDL
+                        Constants.ApplicationOctetStreamMediaType, new OpenApiMediaType
+                        {
+                            Schema = schema
+                        }
+                    }
+                };
+            }
+            else
+            {
+                content = new Dictionary<string, OpenApiMediaType>
                 {
                     {
                         Constants.ApplicationJsonMediaType, new OpenApiMediaType
@@ -76,7 +88,16 @@ namespace Microsoft.OpenApi.OData.Operation
                             Schema = schema
                         }
                     }
-                }
+                };
+            }
+
+            // The requestBody field contains a Request Body Object for the request body
+            // that references the schema of the entity set’s entity type in the global schemas.
+            operation.RequestBody = new OpenApiRequestBody
+            {
+                Required = true,
+                Description = "New entity",
+                Content = content
             };
 
             base.SetRequestBody(operation);
@@ -104,6 +125,35 @@ namespace Microsoft.OpenApi.OData.Operation
                 };
             }
 
+            IDictionary<string, OpenApiMediaType> content;
+
+            if (EntitySet.EntityType().HasStream)
+            {
+                // Support creating a media entity
+                content = new Dictionary<string, OpenApiMediaType>
+                {
+                    {
+                        // TODO: Read the AcceptableMediaType annotation from CSDL
+                        Constants.ApplicationOctetStreamMediaType, new OpenApiMediaType
+                        {
+                            Schema = schema
+                        }
+                    }
+                };
+            }
+            else
+            {
+                content = new Dictionary<string, OpenApiMediaType>
+                {
+                    {
+                        Constants.ApplicationJsonMediaType, new OpenApiMediaType
+                        {
+                            Schema = schema
+                        }
+                    }
+                };
+            }
+
             operation.Responses = new OpenApiResponses
             {
                 {
@@ -111,16 +161,7 @@ namespace Microsoft.OpenApi.OData.Operation
                     new OpenApiResponse
                     {
                         Description = "Created entity",
-                        Content = new Dictionary<string, OpenApiMediaType>
-                        {
-                            {
-                                Constants.ApplicationJsonMediaType,
-                                new OpenApiMediaType
-                                {
-                                    Schema = schema
-                                }
-                            }
-                        }
+                        Content = content
                     }
                 }
             };
