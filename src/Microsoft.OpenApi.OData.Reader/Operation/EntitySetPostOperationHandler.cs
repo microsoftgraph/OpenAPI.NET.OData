@@ -70,7 +70,7 @@ namespace Microsoft.OpenApi.OData.Operation
                 content = new Dictionary<string, OpenApiMediaType>
                 {
                     {
-                        // TODO: Read the AcceptableMediaType annotation from CSDL
+                        // TODO: Read the AcceptableMediaType annotation from model
                         Constants.ApplicationOctetStreamMediaType, new OpenApiMediaType
                         {
                             Schema = schema
@@ -133,7 +133,7 @@ namespace Microsoft.OpenApi.OData.Operation
                 content = new Dictionary<string, OpenApiMediaType>
                 {
                     {
-                        // TODO: Read the AcceptableMediaType annotation from CSDL
+                        // TODO: Read the AcceptableMediaType annotation from model
                         Constants.ApplicationOctetStreamMediaType, new OpenApiMediaType
                         {
                             Schema = schema
