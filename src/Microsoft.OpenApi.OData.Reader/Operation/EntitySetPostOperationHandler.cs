@@ -112,43 +112,27 @@ namespace Microsoft.OpenApi.OData.Operation
         private IDictionary<string, OpenApiMediaType> GetContentDescription()
         {
             OpenApiSchema schema = GetEntitySchema();
+            var content = new Dictionary<string, OpenApiMediaType>();
 
             if (EntitySet.EntityType().HasStream)
             {
-                // Support creating a media entity
-                return new Dictionary<string, OpenApiMediaType>
+                // TODO: Read the AcceptableMediaType annotation from model
+                content.Add(Constants.ApplicationOctetStreamMediaType, new OpenApiMediaType
                 {
+                    Schema = new OpenApiSchema
                     {
-                        // TODO: Read the AcceptableMediaType annotation from model
-                        Constants.ApplicationOctetStreamMediaType, new OpenApiMediaType
-                        {
-                            Schema = new OpenApiSchema
-                            {
-                                Type = "string",
-                                Format = "binary"
-                            }
-                        }
-                    },
-                    {                        
-                        Constants.ApplicationJsonMediaType, new OpenApiMediaType
-                        {
-                            Schema = schema
-                        }
+                        Type = "string",
+                        Format = "binary"
                     }
-                };
+                });                
             }
-            else
+
+            content.Add(Constants.ApplicationJsonMediaType, new OpenApiMediaType
             {
-                return new Dictionary<string, OpenApiMediaType>
-                {
-                    {
-                        Constants.ApplicationJsonMediaType, new OpenApiMediaType
-                        {
-                            Schema = schema
-                        }
-                    }
-                };
-            }
+                Schema = schema
+            });
+
+            return content;
         }
 
         /// <summary>
