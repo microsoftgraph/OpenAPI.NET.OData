@@ -4,10 +4,12 @@
 // ------------------------------------------------------------
 
 using Microsoft.OData.Edm;
+using Microsoft.OData.Edm.Vocabularies;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 using Microsoft.OpenApi.OData.Common;
 using Microsoft.OpenApi.OData.Edm;
+using Microsoft.OpenApi.OData.Vocabulary.Capabilities;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -109,6 +111,44 @@ namespace Microsoft.OpenApi.OData.Operation
             }
 
             return string.Join(".", items);
+        }
+
+        /// <summary>
+        /// Gets a media entity content description.
+        /// </summary>
+        /// <returns>The entity content description.</returns>
+        protected IDictionary<string, OpenApiMediaType> GetContentDescription()
+        {
+            var content = new Dictionary<string, OpenApiMediaType>();
+
+            OpenApiSchema schema = new OpenApiSchema
+            {
+                Type = "string",
+                Format = "binary"
+            };
+
+            var annotatableElement = EntitySet ?? (IEdmVocabularyAnnotatable)Singleton;
+
+            var mediaTypes = Context.Model.GetCollection(annotatableElement,
+                CapabilitiesConstants.AcceptableMediaTypes);
+
+            if (mediaTypes != null)
+            {
+                foreach (string item in mediaTypes)
+                {
+                    content.Add(item, null);
+                }
+            }
+            else
+            {
+                // Default content type
+                content.Add(Constants.ApplicationOctetStreamMediaType, new OpenApiMediaType
+                {
+                    Schema = schema
+                });
+            };
+
+            return content;
         }
     }
 }
