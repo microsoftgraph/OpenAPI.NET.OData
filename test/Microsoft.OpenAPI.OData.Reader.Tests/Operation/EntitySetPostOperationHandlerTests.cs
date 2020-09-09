@@ -54,10 +54,12 @@ namespace Microsoft.OpenApi.OData.Operation.Tests
             {
                 // TODO: Read the AcceptableMediaType annotation from model
                 Assert.True(post.Responses["201"].Content.ContainsKey(Constants.ApplicationOctetStreamMediaType));
+                Assert.True(post.Responses["201"].Content.ContainsKey(Constants.ApplicationJsonMediaType));
 
                 Assert.NotNull(post.RequestBody);
                 // TODO: Read the AcceptableMediaType annotation from model
                 Assert.True(post.RequestBody.Content.ContainsKey(Constants.ApplicationOctetStreamMediaType));
+                Assert.True(post.RequestBody.Content.ContainsKey(Constants.ApplicationJsonMediaType));
             }
             else
             {
