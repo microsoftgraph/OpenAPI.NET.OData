@@ -122,6 +122,16 @@ namespace Microsoft.OpenApi.OData.Operation
                         // TODO: Read the AcceptableMediaType annotation from model
                         Constants.ApplicationOctetStreamMediaType, new OpenApiMediaType
                         {
+                            Schema = new OpenApiSchema
+                            {
+                                Type = "string",
+                                Format = "binary"
+                            }
+                        }
+                    },
+                    {                        
+                        Constants.ApplicationJsonMediaType, new OpenApiMediaType
+                        {
                             Schema = schema
                         }
                     }

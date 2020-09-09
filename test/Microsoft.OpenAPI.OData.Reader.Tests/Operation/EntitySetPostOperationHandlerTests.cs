@@ -58,6 +58,7 @@ namespace Microsoft.OpenApi.OData.Operation.Tests
                 Assert.NotNull(post.RequestBody);
                 // TODO: Read the AcceptableMediaType annotation from model
                 Assert.True(post.RequestBody.Content.ContainsKey(Constants.ApplicationOctetStreamMediaType));
+                Assert.True(post.RequestBody.Content.ContainsKey(Constants.ApplicationJsonMediaType));
             }
             else
             {
