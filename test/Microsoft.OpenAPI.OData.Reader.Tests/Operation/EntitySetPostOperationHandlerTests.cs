@@ -9,6 +9,7 @@ using Microsoft.OpenApi.Models;
 using Microsoft.OpenApi.OData.Common;
 using Microsoft.OpenApi.OData.Edm;
 using Microsoft.OpenApi.OData.Tests;
+using Microsoft.OpenApi.OData.Vocabulary.Capabilities;
 using Xunit;
 
 namespace Microsoft.OpenApi.OData.Operation.Tests
@@ -25,7 +26,24 @@ namespace Microsoft.OpenApi.OData.Operation.Tests
         public void CreateEntitySetPostOperationReturnsCorrectOperation(bool enableOperationId, bool hasStream)
         {
             // Arrange
-            IEdmModel model = EntitySetGetOperationHandlerTests.GetEdmModel("", hasStream);
+            string qualifiedName = CapabilitiesConstants.AcceptableMediaTypes;
+            string annotation = $@"
+            <Annotation Term=""{qualifiedName}"" >
+              <Collection>
+                <String>image/png</String>
+                <String>image/jpeg</String>
+              </Collection>
+            </Annotation>";
+
+            // Assert
+            VerifyEntitySetPostOperation("", enableOperationId, hasStream);
+            VerifyEntitySetPostOperation(annotation, enableOperationId, hasStream);
+        }
+
+        private void VerifyEntitySetPostOperation(string annotation, bool enableOperationId, bool hasStream)
+        {
+            // Arrange
+            IEdmModel model = EntitySetGetOperationHandlerTests.GetEdmModel(annotation, hasStream);
             IEdmEntitySet entitySet = model.EntityContainer.FindEntitySet("Customers");
             OpenApiConvertSettings settings = new OpenApiConvertSettings
             {
@@ -52,21 +70,45 @@ namespace Microsoft.OpenApi.OData.Operation.Tests
 
             if (hasStream)
             {
-                // TODO: Read the AcceptableMediaType annotation from model
-                Assert.True(post.Responses["201"].Content.ContainsKey(Constants.ApplicationOctetStreamMediaType));
-                Assert.True(post.Responses["201"].Content.ContainsKey(Constants.ApplicationJsonMediaType));
-
                 Assert.NotNull(post.RequestBody);
-                // TODO: Read the AcceptableMediaType annotation from model
-                Assert.True(post.RequestBody.Content.ContainsKey(Constants.ApplicationOctetStreamMediaType));
-                Assert.True(post.RequestBody.Content.ContainsKey(Constants.ApplicationJsonMediaType));
+
+                if (!string.IsNullOrEmpty(annotation))
+                {
+                    // RequestBody
+                    Assert.Equal(3, post.RequestBody.Content.Keys.Count);
+                    Assert.True(post.RequestBody.Content.ContainsKey("image/png"));
+                    Assert.True(post.RequestBody.Content.ContainsKey("image/jpeg"));
+                    Assert.True(post.RequestBody.Content.ContainsKey(Constants.ApplicationJsonMediaType));
+
+                    // Response
+                    Assert.Equal(3, post.Responses[Constants.StatusCode201].Content.Keys.Count);
+                    Assert.True(post.Responses[Constants.StatusCode201].Content.ContainsKey("image/png"));
+                    Assert.True(post.Responses[Constants.StatusCode201].Content.ContainsKey("image/jpeg"));
+                    Assert.True(post.Responses[Constants.StatusCode201].Content.ContainsKey(Constants.ApplicationJsonMediaType));
+                }
+                else
+                {
+                    // RequestBody
+                    Assert.Equal(2, post.RequestBody.Content.Keys.Count);
+                    Assert.True(post.RequestBody.Content.ContainsKey(Constants.ApplicationOctetStreamMediaType));
+                    Assert.True(post.RequestBody.Content.ContainsKey(Constants.ApplicationJsonMediaType));
+
+                    // Response
+                    Assert.Equal(2, post.Responses[Constants.StatusCode201].Content.Keys.Count);
+                    Assert.True(post.Responses[Constants.StatusCode201].Content.ContainsKey(Constants.ApplicationOctetStreamMediaType));
+                    Assert.True(post.Responses[Constants.StatusCode201].Content.ContainsKey(Constants.ApplicationJsonMediaType));
+                }
             }
             else
             {
-                Assert.True(post.Responses["201"].Content.ContainsKey(Constants.ApplicationJsonMediaType));
-
+                // RequestBody
                 Assert.NotNull(post.RequestBody);
+                Assert.Equal(1, post.RequestBody.Content.Keys.Count);
                 Assert.True(post.RequestBody.Content.ContainsKey(Constants.ApplicationJsonMediaType));
+
+                // Response
+                Assert.Equal(1, post.Responses[Constants.StatusCode201].Content.Keys.Count);
+                Assert.True(post.Responses[Constants.StatusCode201].Content.ContainsKey(Constants.ApplicationJsonMediaType));
             }
 
             if (enableOperationId)
