@@ -94,8 +94,7 @@ namespace Microsoft.OpenApi.OData.Operation
                         }
                     },
                     {
-                        Constants.ApplicationJsonMediaType,
-                        new OpenApiMediaType
+                        Constants.ApplicationJsonMediaType, new OpenApiMediaType
                         {
                             Schema = schema
                         }
