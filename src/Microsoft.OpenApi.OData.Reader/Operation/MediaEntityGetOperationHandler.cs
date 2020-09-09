@@ -58,22 +58,6 @@ namespace Microsoft.OpenApi.OData.Operation
         /// <inheritdoc/>
         protected override void SetResponses(OpenApiOperation operation)
         {
-            OpenApiSchema schema = null;
-
-            if (Context.Settings.EnableDerivedTypesReferencesForResponses)
-            {
-                schema = EdmModelHelper.GetDerivedTypesReferenceSchema(EntitySet.EntityType(), Context.Model);
-            }
-
-            if (schema == null)
-            {
-                schema = new OpenApiSchema
-                {
-                    Type = "string",
-                    Format = "binary"
-                };
-            }
-
             operation.Responses = new OpenApiResponses
             {
                 {
@@ -87,7 +71,11 @@ namespace Microsoft.OpenApi.OData.Operation
                                 Constants.ApplicationOctetStreamMediaType,
                                 new OpenApiMediaType
                                 {
-                                    Schema = schema
+                                    Schema = new OpenApiSchema
+                                    {
+                                        Type = "string",
+                                        Format = "binary"
+                                    }
                                 }
                             }
                         }
