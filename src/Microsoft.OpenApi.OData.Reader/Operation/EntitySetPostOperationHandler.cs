@@ -116,7 +116,7 @@ namespace Microsoft.OpenApi.OData.Operation
 
             if (EntitySet.EntityType().HasStream)
             {
-                var mediaTypes = Context.Model.GetCollection(EntitySet,
+                IEnumerable<string> mediaTypes = Context.Model.GetCollection(EntitySet.EntityType(),
                     CapabilitiesConstants.AcceptableMediaTypes);
 
                 if (mediaTypes != null)
