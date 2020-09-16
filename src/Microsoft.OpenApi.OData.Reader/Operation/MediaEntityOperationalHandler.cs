@@ -85,18 +85,18 @@ namespace Microsoft.OpenApi.OData.Operation
         /// <returns></returns>
         protected string GetOperationId(string prefix, string identifier)
         {
-            Utils.CheckArgumentNull(prefix, nameof(prefix));
-            Utils.CheckArgumentNull(identifier, nameof(identifier));
+            Utils.CheckArgumentNullOrEmpty(prefix, nameof(prefix));
+            Utils.CheckArgumentNullOrEmpty(identifier, nameof(identifier));
 
             IList<string> items = new List<string>
             {
                 NavigationSource.Name
             };
 
-            var lastpath = Path.Segments.Last(c => c is ODataStreamContentSegment || c is ODataStreamPropertySegment);
-            foreach (var segment in Path.Segments.Skip(1))
+            ODataSegment lastSegment = Path.Segments.Last(c => c is ODataStreamContentSegment || c is ODataStreamPropertySegment);
+            foreach (ODataSegment segment in Path.Segments.Skip(1))
             {
-                if (segment == lastpath)
+                if (segment == lastSegment)
                 {
                     items.Add(prefix + Utils.UpperFirstChar(identifier));
                     break;
@@ -127,10 +127,34 @@ namespace Microsoft.OpenApi.OData.Operation
                 Format = "binary"
             };
 
-            var annotatableElement = EntitySet ?? (IEdmVocabularyAnnotatable)Singleton;
+            IEdmVocabularyAnnotatable annotatableElement = null;
+            IEdmEntityType entityType = EntitySet != null ? EntitySet.EntityType() : Singleton.EntityType();
+            ODataSegment lastSegmentStreamProp = Path.Segments.LastOrDefault(c => c is ODataStreamPropertySegment);
 
-            var mediaTypes = Context.Model.GetCollection(annotatableElement,
-                CapabilitiesConstants.AcceptableMediaTypes);
+            if (lastSegmentStreamProp != null)
+            {
+                // Get the annotatable stream property
+                // The stream property can either be a structural type or navigation type property
+                IEdmProperty property = GetStructuralProperty(entityType, lastSegmentStreamProp.Identifier);
+                if (property == null)
+                {
+                    property = GetNavigationProperty(entityType, lastSegmentStreamProp.Identifier);
+                }
+
+                annotatableElement = property;
+            }
+            else
+            {
+                annotatableElement = entityType;
+            }
+
+            // Fetch the respective AcceptableMediaTypes
+            IEnumerable<string> mediaTypes = null;
+            if (annotatableElement != null)
+            {
+                mediaTypes = Context.Model.GetCollection(annotatableElement,
+                    CapabilitiesConstants.AcceptableMediaTypes);
+            }
 
             if (mediaTypes != null)
             {
@@ -149,6 +173,16 @@ namespace Microsoft.OpenApi.OData.Operation
             };
 
             return content;
+        }
+
+        private IEdmStructuralProperty GetStructuralProperty(IEdmEntityType entityType, string identifier)
+        {
+            return entityType.DeclaredStructuralProperties().FirstOrDefault(x => x.Name.Equals(identifier));
+        }
+
+        private IEdmNavigationProperty GetNavigationProperty(IEdmEntityType entityType, string identifier)
+        {
+            return entityType.DeclaredNavigationProperties().FirstOrDefault(x => x.Name.Equals(identifier));
         }
     }
 }
