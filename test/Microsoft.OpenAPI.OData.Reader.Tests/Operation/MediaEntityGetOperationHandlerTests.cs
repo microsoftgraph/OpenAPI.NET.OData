@@ -142,7 +142,7 @@ namespace Microsoft.OpenApi.OData.Operation.Tests
         <EntitySet Name=""Todos"" EntityType=""microsoft.graph.Todo"" />
         <Singleton Name=""me"" Type=""microsoft.graph.user"" />
       </EntityContainer>
-      <Annotations Target=""microsoft.graph.GraphService/Todos"">
+      <Annotations Target=""microsoft.graph.Todo/Logo"">
         {0}
       </Annotations>
     </Schema>
