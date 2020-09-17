@@ -4,12 +4,14 @@
 // ------------------------------------------------------------
 
 using Microsoft.OData.Edm;
+using Microsoft.OData.Edm.Csdl;
 using Microsoft.OpenApi.Extensions;
 using Microsoft.OpenApi.Models;
 using Microsoft.OpenApi.OData.Common;
 using Microsoft.OpenApi.OData.Edm;
 using Microsoft.OpenApi.OData.Tests;
 using Microsoft.OpenApi.OData.Vocabulary.Capabilities;
+using System.Xml.Linq;
 using Xunit;
 
 namespace Microsoft.OpenApi.OData.Operation.Tests
@@ -30,8 +32,7 @@ namespace Microsoft.OpenApi.OData.Operation.Tests
             string annotation = $@"
             <Annotation Term=""{qualifiedName}"" >
               <Collection>
-                <String>image/png</String>
-                <String>image/jpeg</String>
+                <String>application/todo</String>
               </Collection>
             </Annotation>";
 
@@ -43,7 +44,7 @@ namespace Microsoft.OpenApi.OData.Operation.Tests
         private void VerifyEntitySetPostOperation(string annotation, bool enableOperationId, bool hasStream)
         {
             // Arrange
-            IEdmModel model = EntitySetGetOperationHandlerTests.GetEdmModel(annotation, hasStream);
+            IEdmModel model = GetEdmModel(annotation, hasStream);
             IEdmEntitySet entitySet = model.EntityContainer.FindEntitySet("Customers");
             OpenApiConvertSettings settings = new OpenApiConvertSettings
             {
@@ -75,15 +76,13 @@ namespace Microsoft.OpenApi.OData.Operation.Tests
                 if (!string.IsNullOrEmpty(annotation))
                 {
                     // RequestBody
-                    Assert.Equal(3, post.RequestBody.Content.Keys.Count);
-                    Assert.True(post.RequestBody.Content.ContainsKey("image/png"));
-                    Assert.True(post.RequestBody.Content.ContainsKey("image/jpeg"));
+                    Assert.Equal(2, post.RequestBody.Content.Keys.Count);
+                    Assert.True(post.RequestBody.Content.ContainsKey("application/todo"));
                     Assert.True(post.RequestBody.Content.ContainsKey(Constants.ApplicationJsonMediaType));
 
                     // Response
-                    Assert.Equal(3, post.Responses[Constants.StatusCode201].Content.Keys.Count);
-                    Assert.True(post.Responses[Constants.StatusCode201].Content.ContainsKey("image/png"));
-                    Assert.True(post.Responses[Constants.StatusCode201].Content.ContainsKey("image/jpeg"));
+                    Assert.Equal(2, post.Responses[Constants.StatusCode201].Content.Keys.Count);
+                    Assert.True(post.Responses[Constants.StatusCode201].Content.ContainsKey("application/todo"));
                     Assert.True(post.Responses[Constants.StatusCode201].Content.ContainsKey(Constants.ApplicationJsonMediaType));
                 }
                 else
@@ -227,6 +226,33 @@ namespace Microsoft.OpenApi.OData.Operation.Tests
             {
                 Assert.Empty(post.Security);
             }
+        }
+
+        private static IEdmModel GetEdmModel(string annotation, bool hasStream = false)
+        {
+            const string template = @"<edmx:Edmx Version=""4.0"" xmlns:edmx=""http://docs.oasis-open.org/odata/ns/edmx"">
+  <edmx:DataServices>
+    <Schema Namespace=""NS"" xmlns=""http://docs.oasis-open.org/odata/ns/edm"">
+      <EntityType Name=""Customer"" HasStream=""{0}"">
+        <Key>
+          <PropertyRef Name=""ID"" />
+        </Key>
+        <Property Name=""ID"" Type=""Edm.Int32"" Nullable=""false"" />
+      </EntityType>
+      <EntityContainer Name =""Default"">
+         <EntitySet Name=""Customers"" EntityType=""NS.Customer"" />
+      </EntityContainer>
+      <Annotations Target=""NS.Customer"">
+       {1}
+      </Annotations>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>";
+
+            string modelText = string.Format(template, hasStream, annotation);
+            bool result = CsdlReader.TryParse(XElement.Parse(modelText).CreateReader(), out IEdmModel model, out _);
+            Assert.True(result);
+            return model;
         }
     }
 }
