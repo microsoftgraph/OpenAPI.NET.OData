@@ -98,7 +98,7 @@ namespace Microsoft.OpenApi.OData.Operation
             {
                 if (segment == lastSegment)
                 {
-                    items.Add(prefix + Utils.UpperFirstChar(identifier));
+                    items.Add(prefix + Utils.UpperFirstChar(NavigationProperty.Name) + Utils.UpperFirstChar(identifier));
                     break;
                 }
                 else

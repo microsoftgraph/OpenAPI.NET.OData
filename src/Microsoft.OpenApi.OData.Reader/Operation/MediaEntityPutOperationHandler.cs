@@ -43,7 +43,7 @@ namespace Microsoft.OpenApi.OData.Operation
                 if (EntitySet != null)
                 {
                     string typeName = EntitySet.EntityType().Name;
-                    operation.OperationId = $"{EntitySet.Name}.{typeName}.Update{Utils.UpperFirstChar(identifier)}";
+                    operation.OperationId = $"{EntitySet.Name}.{typeName}.Update{Utils.UpperFirstChar(typeName)}{Utils.UpperFirstChar(identifier)}";
                 }
                 else
                 {
