@@ -105,8 +105,8 @@ namespace Microsoft.OpenApi.OData.Operation.Tests
 
             if (enableOperationId)
             {
-                Assert.Equal("Todos.Todo.UpdateTodoLogo", putOperation.OperationId);
-                Assert.Equal("me.photo.UpdatePhotoContent", putOperation2.OperationId);
+                Assert.Equal("Todos.Todo.UpdateLogo", putOperation.OperationId);
+                Assert.Equal("me.UpdatePhotoContent", putOperation2.OperationId);
             }
             else
             {
