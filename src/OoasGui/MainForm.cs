@@ -18,6 +18,7 @@ using Microsoft.OpenApi.Models;
 using Microsoft.OpenApi.OData;
 using System.Net;
 using System.Xml;
+using System.Net.Http;
 
 namespace OoasGui
 {
@@ -163,7 +164,19 @@ namespace OoasGui
         {
             IEdmModel model;
             IEnumerable<EdmError> errors;
-            if (!CsdlReader.TryParse(XElement.Parse(text).CreateReader(), out model, out errors))
+
+            XmlReader getReferencedModelReaderFunc(Uri uri)
+            {
+                if (uri != null)
+                {
+                    var httpClient = new HttpClient();
+                    var csdl = httpClient.GetStringAsync(uri.OriginalString).GetAwaiter().GetResult();
+                    return XElement.Parse(csdl).CreateReader();
+                }
+                return null;
+            }
+
+            if (!CsdlReader.TryParse(XElement.Parse(text).CreateReader(), getReferencedModelReaderFunc, out model, out errors))
             {
                 StringBuilder sb = new StringBuilder();
                 foreach (EdmError error in errors)
@@ -174,6 +187,18 @@ namespace OoasGui
                 MessageBox.Show("Parse CSDL from " + resource + " failed. Error: " + sb.ToString());
                 return;
             }
+
+            //if (!CsdlReader.TryParse(XElement.Parse(text).CreateReader(), out model, out errors))
+            //{
+            //    StringBuilder sb = new StringBuilder();
+            //    foreach (EdmError error in errors)
+            //    {
+            //        sb.Append(error.ErrorMessage).Append("\n");
+            //    }
+
+            //    MessageBox.Show("Parse CSDL from " + resource + " failed. Error: " + sb.ToString());
+            //    return;
+            //}
 
             EdmModel = model;
         }
